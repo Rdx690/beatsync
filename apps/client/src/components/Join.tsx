@@ -7,7 +7,7 @@ import { generateName } from "@/lib/randomNames";
 import { validateFullRoomId, validatePartialRoomId } from "@/lib/room";
 import { useRoomStore } from "@/store/room";
 import { useQuery } from "@tanstack/react-query";
-import { PlusCircle } from "lucide-react";
+import { AudioLines, PlusCircle } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -83,11 +83,36 @@ export const Join = () => {
   };
 
   return (
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
+    <motion.div
+      className="relative min-h-dvh overflow-hidden bg-[#070914] text-white"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.5 }}
+    >
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 overflow-hidden">
+        <div className="absolute -top-48 left-1/2 h-[28rem] w-[38rem] -translate-x-1/2 rounded-full bg-violet-600/15 blur-[110px]" />
+        <div className="absolute -bottom-48 -left-24 h-[24rem] w-[24rem] rounded-full bg-cyan-500/10 blur-[100px]" />
+        <div className="absolute inset-0 opacity-[0.14] [background-image:linear-gradient(rgba(255,255,255,0.055)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.055)_1px,transparent_1px)] [background-size:44px_44px] [mask-image:linear-gradient(to_bottom,black,transparent_80%)]" />
+      </div>
       {/* <AnnouncementBanner /> */}
-      <div className="w-full px-2.5 lg:px-1 max-w-[28rem] mx-auto mt-24 lg:mt-28">
+      <div className="relative z-10 w-full px-4 pb-12 pt-12 sm:pt-16 lg:px-1 max-w-[30rem] mx-auto">
+        <motion.header
+          className="mb-8 flex flex-col items-center text-center"
+          initial={{ opacity: 0, y: 8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45 }}
+        >
+          <div className="mb-4 flex size-14 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.06] shadow-[0_0_45px_rgba(139,92,246,0.18)] backdrop-blur-xl">
+            <AudioLines className="size-7 text-cyan-300" strokeWidth={1.7} />
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="text-2xl font-semibold tracking-[-0.06em] text-white">VFX <span className="bg-gradient-to-r from-violet-300 via-fuchsia-200 to-cyan-300 bg-clip-text text-transparent">SYNC</span></span>
+            <span className="rounded-full border border-cyan-300/20 bg-cyan-300/[0.08] px-2 py-0.5 text-[9px] font-semibold tracking-[0.18em] text-cyan-200">LIVE AUDIO</span>
+          </div>
+          <p className="mt-3 max-w-xs text-sm leading-6 text-slate-400">Your devices. One beat. Perfectly in sync.</p>
+        </motion.header>
         <motion.div
-          className="flex flex-col items-center justify-center p-6 bg-neutral-900 rounded-lg border border-neutral-800 shadow-xl mx-auto"
+          className="mx-auto flex flex-col items-center justify-center rounded-[28px] border border-white/[0.09] bg-slate-950/70 p-6 shadow-[0_28px_100px_rgba(0,0,0,0.45)] ring-1 ring-white/[0.03] backdrop-blur-2xl sm:p-8"
           initial={{ opacity: 0, y: 10, scale: 0.98 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
@@ -109,7 +134,7 @@ export const Join = () => {
             </motion.div>
           ) : null}
           <motion.h2
-            className="text-base font-medium tracking-tight mb-1 text-white"
+            className="mb-1 text-lg font-semibold tracking-tight text-white"
             initial={{ opacity: 0, y: -5 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.13 }}
@@ -118,7 +143,7 @@ export const Join = () => {
           </motion.h2>
 
           <motion.p
-            className="text-neutral-400 mb-5 text-center text-xs"
+            className="mb-6 max-w-xs text-center text-sm leading-6 text-slate-400"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.15 }}
@@ -199,7 +224,7 @@ export const Join = () => {
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.span
                     key={username}
-                    className="text-primary font-medium inline-block"
+                    className="inline-block bg-gradient-to-r from-violet-300 to-cyan-300 bg-clip-text font-semibold text-transparent"
                     initial={{
                       opacity: 0,
                       filter: "blur(8px)",
@@ -234,7 +259,7 @@ export const Join = () => {
             <div className="flex flex-col gap-3 mt-5">
               <motion.button
                 type="button"
-                className="px-5 py-2 bg-primary text-primary-foreground rounded-full font-medium text-sm tracking-wide cursor-pointer w-full hover:shadow-lg hover:shadow-zinc-50/50 transition-shadow duration-500 flex items-center justify-center"
+                className="flex w-full cursor-pointer items-center justify-center rounded-2xl border border-white/10 bg-gradient-to-r from-violet-600 via-violet-500 to-indigo-500 px-5 py-3.5 text-sm font-semibold tracking-wide text-white shadow-[0_8px_30px_rgba(124,58,237,0.25)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_36px_rgba(124,58,237,0.38)] disabled:cursor-not-allowed disabled:opacity-60"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 whileHover={{
@@ -292,7 +317,7 @@ export const Join = () => {
           </form>
 
           <motion.p
-            className="text-neutral-500 mt-5 text-center text-xs leading-relaxed"
+            className="mt-5 text-center text-xs leading-relaxed text-slate-500"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.4 }}
@@ -302,7 +327,7 @@ export const Join = () => {
 
           {/* Divider */}
           <motion.div
-            className="w-full h-px bg-neutral-800 my-4"
+            className="my-5 h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent"
             initial={{ opacity: 0, scaleX: 0 }}
             animate={{ opacity: 1, scaleX: 1 }}
             transition={{ duration: 0.4, delay: 0.5 }}
@@ -319,12 +344,12 @@ export const Join = () => {
               href={SOCIAL_LINKS.discord}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-neutral-400 hover:text-white transition-colors text-xs"
+              className="flex items-center gap-2 text-xs text-slate-400 transition-colors hover:text-cyan-200"
             >
               <FaDiscord className="size-[17px]" />
               <span>Join Community</span>
             </a>
-            <div className="w-px h-4 bg-neutral-700" />
+            <div className="h-4 w-px bg-white/10" />
             <a
               href={SOCIAL_LINKS.github}
               target="_blank"
