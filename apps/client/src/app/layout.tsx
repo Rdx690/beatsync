@@ -24,15 +24,16 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Beatsync",
+  title: "VFX SYNC",
   description:
-    "Turn every device into a synchronized speaker. Beatsync is an open-source music player for multi-device audio playback. Host a listening party today!",
-  keywords: ["music", "sync", "audio", "collaboration", "real-time"],
-  authors: [{ name: "Freeman Jiang" }],
+    "VFX SYNC — turn your devices into a synchronized sound system. Create a room, invite friends, and listen together with tightly synchronized multi-device audio.",
+  applicationName: "VFX SYNC",
+  keywords: ["VFX SYNC", "music", "sync", "audio", "listening party", "real-time"],
+  authors: [{ name: "Sourajit VFX" }],
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Beatsync",
+    title: "VFX SYNC",
   },
 };
 
